@@ -3,7 +3,7 @@
 
 ## Workshop Overview
 After identifying differentially expressed genes, it’s critical to interpret these findings in a biological context. 
-This workshop explores downstream analyses you can perform with differential gene expression analysis results in R. 
+This workshop explores downstream analyses you can perform with differential gene expression analysis results in R, obtained in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki).
 You’ll learn how to:
 - Conduct Gene Set Enrichment Analysis (GSEA) for pathway-level insights.
 - Build Protein-Protein Interaction (PPI) networks to identify functional connections between genes.
