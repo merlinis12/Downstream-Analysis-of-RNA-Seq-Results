@@ -26,6 +26,7 @@ GSEA helps identify pathways and biological processes enriched in a ranked list 
 - **Reactome**: High-level pathway annotations.
 
 ### 2.2 GSEA in R with `fgsea`
+`fgsea` package in R provides a fast and efficient method for performing preranked GSEA. It enables precise and rapid calculation of extremely low GSEA p-values across a collection of gene sets. The p-value estimation employs an adaptive multi-level split Monte Carlo approach. For a detailed explanation of the algorithm, refer to [this preprint](https://www.biorxiv.org/content/10.1101/060012v3).
 ```R
 # Install and load necessary packages
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
