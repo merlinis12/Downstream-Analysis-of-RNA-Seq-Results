@@ -127,6 +127,7 @@ head(drug_results)
 
 ## Additional Resources
 - [fgsea Documentation](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
+- [Using fgsea package](https://bioconductor.org/packages/devel/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html)
 - [GOrilla Tool](http://cbl-gorilla.cs.technion.ac.il/)
 - [STRING Database](https://string-db.org/)
 - [LINCS L1000 Platform](https://clue.io/)
