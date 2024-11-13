@@ -2,8 +2,8 @@
 # Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation
 
 ## Workshop Overview
-After identifying differentially expressed genes, it’s critical to interpret these findings in a biological context. 
-This workshop explores downstream analyses you can perform with differential gene expression analysis results in R, obtained in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki).
+After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
+This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
 You’ll learn how to:
 - Conduct Gene Set Enrichment Analysis (GSEA) for pathway-level insights.
 - Build Protein-Protein Interaction (PPI) networks to identify functional connections between genes.
@@ -19,6 +19,14 @@ We aim to connect RNA-seq data to larger biological systems, providing insights 
 ---
 
 ## 2. Gene Set Enrichment Analysis (GSEA)
+Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a predefined set of genes shows statistically significant differences in expression between two biological conditions. GSEA does not rely on a threshold (like fold-change) and instead assesses whether the genes in a set are overrepresented at the extremes of a ranked list of genes.
+
+**Steps in GSEA**
+
+- **Rank the genes** based on their differential expression.
+- **Predefine gene sets**: These could be biological pathways, gene ontology (GO) terms, or other gene collections.
+- **Calculate enrichment scores** for each gene set.
+- **Assess statistical significance** using permutation testing.
 ### 2.1 Overview
 GSEA helps identify pathways and biological processes enriched in a ranked list of genes. We’ll analyze pathways using:
 - **Gene Ontology (GO)**: Biological processes, molecular functions, and cellular components.
@@ -51,7 +59,11 @@ ggplot(fgsea_results, aes(reorder(pathway, NES), NES)) +
   coord_flip() +
   labs(title = "GSEA Results", x = "Pathway", y = "Normalized Enrichment Score")
 ```
-
+> [!IMPORTANT]
+> **How to Interpret GSEA Results**
+> - *NES (Normalized Enrichment Score)*: Higher scores indicate more significant enrichment.
+> - *p-value*: Determines the statistical significance of the enrichment.
+> - *FDR (False Discovery Rate)*: A corrected p-value to account for multiple testing.
 ### 2.3 No-Code Alternative: GOrilla
 GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enrichment analysis through a web interface.
 1. Access [GOrilla](http://cbl-gorilla.cs.technion.ac.il/).
@@ -62,7 +74,16 @@ GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enric
 ---
 
 ## 3. Protein-Protein Interaction (PPI) Networks
-### 3.1 Building PPI Networks in R
+
+Protein-Protein Interaction (PPI) networks represent the interactions between proteins, providing insights into biological processes and pathways. By integrating your list of differentially expressed genes (DEGs) into a PPI network, you can identify functional relationships and discover novel biological insights.
+
+#### Steps for Building PPI Networks
+
+1. **Identify the DEGs**: Start with a list of genes with significant differential expression.
+2. **Obtain interaction data**: Use databases like STRING, BioGRID, or Pathway Commons to get protein interaction information.
+3. **Construct the network**: Use R or external software to build and visualize the network.
+
+### 3.1 Building PPI Networks in R with `STRINGdb`
 ```R
 # Install and load STRINGdb for PPI analysis
 BiocManager::install("STRINGdb")
@@ -132,3 +153,13 @@ head(drug_results)
 - [GOrilla Tool](http://cbl-gorilla.cs.technion.ac.il/)
 - [STRING Database](https://string-db.org/)
 - [LINCS L1000 Platform](https://clue.io/)
+
+---
+
+## References
+
+- Subramanian, A., et al. (2005). Gene Set Enrichment Analysis: A Knowledge-Based Approach for Interpreting Genome-Wide Expression Profiles. *Proceedings of the National Academy of Sciences*.
+- Szklarczyk, D., et al. (2019). STRING v11: protein–protein association networks with increased coverage, supporting functional discovery in genome-wide experimental datasets. *Nucleic Acids Research*.
+- Gene Ontology Consortium. (2019). The Gene Ontology Resource: 20 years and still GOing strong. *Nucleic Acids Research*.
+- Eran Eden*, Roy Navon*, Israel Steinfeld, Doron Lipson and Zohar Yakhini. "GOrilla: A Tool For Discovery And Visualization of Enriched GO Terms in Ranked Gene Lists", BMC Bioinformatics 2009, 10:48.
+- Eran Eden, Doron Lipson, Sivan Yogev, Zohar Yakhini. "Discovering Motifs in Ranked Lists of DNA sequences", PLoS Computational Biology, 3(3):e39, 2007.
