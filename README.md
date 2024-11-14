@@ -5,8 +5,8 @@
 After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
 This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
 You’ll learn how to:
-- Conduct Gene Set Enrichment Analysis (GSEA) for pathway-level insights.
-- Build Protein-Protein Interaction (PPI) networks to identify functional connections between genes.
+- Conduct [Gene Set Enrichment Analysis (GSEA)](#2-gene-set-enrichment-analysis-gsea) for pathway-level insights.
+- Build [Protein-Protein Interaction (PPI) networks](#3-protein-protein-interaction-ppi-networks) to identify functional connections between genes.
 - Explore drug repurposing opportunities based on RNA-seq data.
 Hands-on exercises will focus on tools like `fgsea` in R and software such as GOrilla and Cytoscape.
 
@@ -19,6 +19,11 @@ We aim to connect RNA-seq data to larger biological systems, providing insights 
 ---
 
 ## 2. Gene Set Enrichment Analysis (GSEA)
+
+Comment on the ranked list of degs.
+
+Comment on the gene id conversion.
+
 Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a predefined set of genes shows statistically significant differences in expression between two biological conditions. GSEA does not rely on a threshold (like fold-change) and instead assesses whether the genes in a set are overrepresented at the extremes of a ranked list of genes.
 
 **Steps in GSEA**
@@ -27,6 +32,8 @@ Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a pred
 - **Predefine gene sets**: These could be biological pathways, gene ontology (GO) terms, or other gene collections.
 - **Calculate enrichment scores** for each gene set.
 - **Assess statistical significance** using permutation testing.
+
+
 ### 2.1 Overview
 GSEA helps identify pathways and biological processes enriched in a ranked list of genes. We’ll analyze pathways using:
 - **Gene Ontology (GO)**: Biological processes, molecular functions, and cellular components.
