@@ -32,7 +32,7 @@ the long gene list to a shorter and more easily interpretable list of pathways.
 
 
 
-BUT  How de=oes pathway enrichment analysis work?
+BUT  How does pathway enrichment analysis work?
 
 Pathway enrichment analysis needs 3 ingredients.
 
@@ -106,7 +106,18 @@ Some of the most widely used are Gene Ontology GO, KEGG or Reactome.
 
 - GO basically focuses on biological processes
 - KEGG is more focused on metabolic pathways
-- Reactome is a curated database of human molecular pathways…
+- Reactome is a curated database of human molecular pathways.
+
+**Gene Ontology GO**
+ [Gene ontology](https://www.geneontology.org/) provides a controlled vocabulary for describing:
+ 1. Biological Processes (BP ontology): Describes the larger biological pathways or events that a gene product is involved in, such as "cell cycle" or "apoptosis".
+ 2. Molecular Functions (MF ontology): Represents the specific molecular activity of a gene product, like "protein kinase activity" or "DNA binding".
+ 3. Cellular Components (CC ontology): Indicates where within a cell the gene product is located, such as "plasma membrane" or "nucleus". 
+
+> [!NOTE]
+> Hierarchical structure:
+> GO terms are organized in a hierarchical structure where more general terms are parents to more specific child terms. 
+
 
 > [!NOTE]
 > ** It is essential to choose well your background genes to your experiment. **
