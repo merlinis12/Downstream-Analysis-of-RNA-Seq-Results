@@ -177,6 +177,9 @@ We will obtain a p-value, which we need to correct for multiple testing since we
 
 This way, we were able to reduce our long list of genes into a more manageable list of biological pathways.
 
+> [!NOTE]
+> Another note on rankings… You can just use the log2(fold-change) as a ranking – but it will not take into account genes with a large fold change but non-significant. However, if you have already selected your significant genes, this may be a good option for you.
+
 > So as you can see, gene set enrichment analysis has the advantage that you don’t filter out genes prior to the analysis, and also it takes into account how significant the changes are, and in which direction.
 
 > [!TIP]
