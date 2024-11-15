@@ -133,14 +133,59 @@ Of course there is!
 
 The method is called Gene Set Enrichment Analysis and it a great pathway enrichment analysis method which helps us solve this problem. Find more about it in this other post.
 
+--
+OPPURE
 
+Pathway enrichment analysis methods take a list of differentially expressed (DE) genes as input, and identify the sets in which the DE genes are over-represented or under-represented.
+
+So they basically summarise long lists of genes into a shorter list of pathways.
+
+The significance of each pathway is measured by calculating the probability that the observed number of DE genes in a given pathway are simply observed by chance. Lower p-values means that the pathway is actually overrepresented and it was not just by chance.
+
+These approaches are known as Over-Representation Analysis (ORA). + picture
+
+The problem in overrepresentation analysis methods is that we first need to select differentially expressed genes.
+
+> [!CAUTION]
+> Overrepresentation Analysis Methods depend a lot in the criteria used to select differentially-expressed genes.
+
+
+How did they eliminate this dependency on gene selection criteria? Basically, by taking all genes into consideration.
+
+But they do it smartly, because they are not only looking for significant changes in sets of functionally related genes, but also genes with large expression changes.
+
+One of the most popular approaches is Gene set enrichment analysis, or GSEA.
 ---
 
 ## 2. Gene Set Enrichment Analysis (GSEA)
 
-Comment on the ranked list of degs.
+> [!IMPORTANT]
+> The steps to perform Gene Set Enrichment Analysis are very similar to overrepresentation analysis methods. The big difference is that the input is not a list of genes, but a ranked list genes.
 
-Comment on the gene id conversion.
+This basically means that genes are ranked by some score.
+
+A common way of ranking genes is by level of differential expression. The p-values tell us how significant the change is. The log2fold changes tell us the direction and strength of the change, basically if they are upregulated or downregulated.
+
+We can combine both to get a ranked list of genes. This will order the genes both by significance and the direction of change.
+
+> Ranking = Sing(log2FoldChange)*-log10(p-value)
+
+
+The result is basically the same as with overrepresentation analysis.
+
+We will obtain a p-value, which we need to correct for multiple testing since we are repeatedly testing thousands of gene ontology terms.
+
+This way, we were able to reduce our long list of genes into a more manageable list of biological pathways.
+
+> So as you can see, gene set enrichment analysis has the advantage that you don’t filter out genes prior to the analysis, and also it takes into account how significant the changes are, and in which direction.
+
+> [!TIP]
+> Gene set enrichment analysis takes your ranked gene list of interest and compares it to a list of background genes. By statistically testing the distribution in your list, it determines which pathways are overrepresented.
+
+
+> [!NOTE]
+> there is a new generation of pathway enrichment analysis Topology-based (TB) methods which also take into account dependencies and interactions between genes.
+---
 
 Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a predefined set of genes shows statistically significant differences in expression between two biological conditions. GSEA does not rely on a threshold (like fold-change) and instead assesses whether the genes in a set are overrepresented at the extremes of a ranked list of genes.
 
@@ -276,6 +321,7 @@ head(drug_results)
 
 ## Additional Resources
 - [Pathway Enrichment Analysis (PEA)](https://biostatsquid.com/pathway-enrichment-analysis-explained/)
+-  [Gene Set Enrichment Analysis](https://biostatsquid.com/gene-set-enrichment-analysis/)
 - [fgsea Documentation](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
 - [Using fgsea package](https://bioconductor.org/packages/devel/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html)
 - [Proteomics Data Analysis in R](https://pnnl-comp-mass-spec.github.io/proteomics-data-analysis-tutorial/pathway-analysis.html)
