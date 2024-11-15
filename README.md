@@ -208,6 +208,23 @@ GSEA helps identify pathways and biological processes enriched in a ranked list 
 
 ### 2.2 GSEA in R with `fgsea`
 `fgsea` package in R provides a fast and efficient method for performing preranked GSEA. It enables precise and rapid calculation of extremely low GSEA p-values across a collection of gene sets. The p-value estimation employs an adaptive multi-level split Monte Carlo approach. For a detailed explanation of the algorithm, refer to [this preprint](https://www.biorxiv.org/content/10.1101/060012v3).
+
+Essentially, there are two things you need to perform preranked gene set enrichment analysis with fgsea.
+
+The fgsea package takes in two main arguments.
+
+The first one is pathways: a list of gene sets or pathways to check
+
+The second one is stats: a named vector of our genes of interest we want to perform GSEA on. The gene names must be the same as the ones in pathways! So make sure you are using the same nomenclature (i.e., gene IDs or Ensemble IDs).
+
+That’s it!
+
+There are additional parameters you may be interested in such as:
+
+minSize: minimal size of a gene set to test (all pathways below the threshold are excluded)
+maxSize: the same, but a maximum threshold.
+scoreType: the default is ‘std’, where the enrichment score is computed normally, but you can also use one-tailed tests if you are only interested in positive (‘pos’) enrichment – so only pathways that are overrepresented – or negative (‘neg’) enrichment – to only get pathways that are underrepresented in your list of genes.
+
 ```R
 # Install and load necessary packages
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
