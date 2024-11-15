@@ -1,7 +1,7 @@
 
-# Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation
+# <span style="color: LightSkyBlue;">Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation</span>
 
-## <code style="color: greenyellow;"> Workshop Overview</code>
+## <span style="color: greenyellow;">Workshop Overview</span>
 After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
 This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
 You’ll learn how to:
@@ -12,7 +12,7 @@ You’ll learn how to:
 
 ---
 
-## 1. Introduction to Downstream Analysis
+## <span style="color: greenyellow;">1. Introduction to Downstream Analysis</span>
 Differential gene expression (DGE) analysis is an essential step in RNAseq downstream analysis. The goal is to identify differentially expressed genes (DEGs) between two conditions.
 For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R) we studied the difference in gene expression between airway smooth muscle cells of healthy individuals and airway smooth muscle cells in individuals treated with dexamethasone, a strong synthetic glucocorticoid..
 
