@@ -318,6 +318,87 @@ interactions <- string_db$get_interactions(mapped_genes$STRING_id)
 ### 4.1 Introduction
 Drug repurposing identifies existing drugs that could target pathways or genes of interest. RNA-seq data helps uncover potential targets by linking DEGs to known drug-gene interactions.
 
+To perform drug repurposing in R using a list of differentially expressed genes, you can leverage packages like "DrugVsDisease" or "enrichR" to compare your gene expression signature against large drug perturbation datasets like the [LINCS L1000](https://lincsportal.ccs.miami.edu/signatures/datasets/LDG-1188), identifying drugs that show a significantly reversed expression pattern compared to your disease gene set, essentially indicating potential therapeutic applications for those drugs in the disease context. 
+
+**Key steps:**
+
+**Prepare your gene list:**
+- Ensure your differentially expressed genes are ranked based on their fold change or significance level (p-value).
+- Consider filtering for high-confidence genes based on adjusted p-values.
+
+**Access a drug perturbation database:**
+- Utilize public datasets like the LINCS L1000, which provides gene expression profiles for a wide range of drugs across different cell lines. 
+
+**Calculate similarity scores:**
+- Use a method like the Kolmogorov-Smirnov test to compare the ranked gene expression profile of your disease signature to each drug's gene expression profile from the database. 
+- A high similarity score indicates that the drug might reverse the disease-related gene expression pattern. 
+
+**Enrichment analysis:**
+- Employ packages like "enrichR" to identify pathways or gene sets significantly enriched within your differentially expressed genes, which can further guide drug repurposing by identifying potential therapeutic targets. 
+
+
+**R packages to consider:**
+
+- `DrugVsDisease`: A dedicated package for drug repurposing analysis using gene expression signatures, calculating enrichment scores based on drug-induced gene expression changes. 
+- `clusterProfiler`: Offers gene set enrichment analysis functionalities that can be used to identify pathways associated with your differentially expressed genes. 
+
+```R
+# Load libraries
+
+library(DrugVsDisease)
+
+library(enrichR)
+
+
+
+# Load your differentially expressed genes (DEG) data
+
+DEG <- read.csv("DEG_list.csv") 
+
+
+
+# Access LINCS L1000 data (you might need to download and process this separately)
+
+lincs_data <- load_lincs_data() 
+
+
+
+# Calculate similarity scores for each drug against your DEG list
+
+drug_scores <- calculate_similarity(DEG, lincs_data)
+
+
+
+# Identify top potential repurposing drugs
+
+top_drugs <- drug_scores %>% 
+
+    arrange(similarity_score) %>% 
+
+    head(n = 10) 
+
+
+
+# Perform pathway enrichment analysis on your DEG list 
+
+enrichment_results <- enrichPathway(DEG$gene_id,  
+
+                                   organism = "Homo sapiens", 
+
+                                   pvalueCutoff = 0.05) 
+
+
+
+# Analyze the results to identify potential therapeutic pathways 
+
+plot_enrichment(enrichment_results)
+
+```
+
+> [!IMPORTANT]
+> - Interpret results based on the known biology of your disease and the target drugs.
+> - Further experimental validation is necessary to confirm potential drug repurposing candidates identified computationally.
+
 ### 4.2 Drug Repurposing in R
 ```R
 # Install and use drugfindR
@@ -347,6 +428,9 @@ head(drug_results)
 ### 5.2 Communicating Results
 - Use clear visualizations (e.g., enrichment plots, PPI diagrams).
 - Report findings with biological context, emphasizing their relevance to disease mechanisms or therapeutic opportunities.
+
+---
+## 6. VALIDATION, VALIDATION, VALIDATION
 
 ---
 
