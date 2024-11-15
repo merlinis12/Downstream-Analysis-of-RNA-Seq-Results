@@ -8,7 +8,7 @@ You’ll learn how to:
 - Conduct [Gene Set Enrichment Analysis (GSEA)](#2-gene-set-enrichment-analysis-gsea) for pathway-level insights.
 - Build [Protein-Protein Interaction (PPI) networks](#3-protein-protein-interaction-ppi-networks) to identify functional connections between genes.
 - Explore drug repurposing opportunities based on RNA-seq data.
-Hands-on exercises will focus on tools like `fgsea` in R and software such as GOrilla and Cytoscape.
+
 
 ---
 
