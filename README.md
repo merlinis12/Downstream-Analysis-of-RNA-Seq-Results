@@ -1,7 +1,7 @@
 
 # Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation
 
-## Workshop Overview
+<span style="color: greenyellow;">## Workshop Overview</span>
 After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
 This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
 You’ll learn how to:
