@@ -416,9 +416,18 @@ head(drug_results)
 
 ---
 
-## Additional Resources
+## Widely Used Bioinformatics Tools for Biological Pathway Analysis
+- **Enrichr**: A tool for gene set enrichment analysis and visualization. [Enrichr](https://maayanlab.cloud/Enrichr/)
+- **DAVID (Database for Annotation, Visualization, and Integrated Discovery)**: A comprehensive set of functional annotation tools. [DAVID](https://david.ncifcrf.gov/)
+- **Metascape**: A versatile platform for gene annotation and analysis. [Metascape](https://metascape.org/gp/index.html)
+- **GSEA (Gene Set Enrichment Analysis)**: A method for identifying enriched gene sets. [GSEA](http://www.gsea-msigdb.org/gsea/index.jsp)
+- **GSVA (Gene Set Variation Analysis)**: A method for analyzing gene set variation. [GSVA](https://www.bioconductor.org/packages/release/bioc/html/GSVA.html)
+- **Cytoscape**: A tool for visualizing and analyzing biological networks. [Cytoscape](https://cytoscape.org/)
+
+
+##  Resources
 - [Pathway Enrichment Analysis (PEA)](https://biostatsquid.com/pathway-enrichment-analysis-explained/)
--  [Gene Set Enrichment Analysis](https://biostatsquid.com/gene-set-enrichment-analysis/)
+- [Gene Set Enrichment Analysis](https://biostatsquid.com/gene-set-enrichment-analysis/)
 - [fgsea Documentation](https://bioconductor.org/packages/release/bioc/html/fgsea.html)
 - [Using fgsea package](https://bioconductor.org/packages/devel/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html)
 - [Proteomics Data Analysis in R](https://pnnl-comp-mass-spec.github.io/proteomics-data-analysis-tutorial/pathway-analysis.html)
