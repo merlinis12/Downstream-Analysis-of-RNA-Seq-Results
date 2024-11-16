@@ -281,36 +281,18 @@ GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enric
 
 Protein-Protein Interaction (PPI) networks represent the interactions between proteins, providing insights into biological processes and pathways. By integrating your list of differentially expressed genes (DEGs) into a PPI network, you can identify functional relationships and discover novel biological insights.
 
+**STRING (Search Tool for the Retrieval of Interacting Genes/Proteins)**
+
+The STRING database contains all known and predicted protein-protein interactions, including both functional (proteins involved in the same biological processes or pathways) and physical interactions, annotated for different species. It also provides clustering and pathway enrichment analysis based on protein-protein interaction data and allow data visualization [107], [121]. It collects and scores evidence from a variety of sources, including automated text mining of scientific literature, databases of interaction experiments and annotated complexes/pathways, computational predictions of interactions based on co-expression and genomic context, and systematic transfers of evidence of interactions from one organism to another 
+
 #### Steps for Building PPI Networks
 
 1. **Identify the DEGs**: Start with a list of genes with significant differential expression.
 2. **Obtain interaction data**: Use databases like STRING, BioGRID, or Pathway Commons to get protein interaction information.
 3. **Construct the network**: Use R or external software to build and visualize the network.
 
-### 3.1 Building PPI Networks in R with `STRINGdb`
-```R
-# Install and load STRINGdb for PPI analysis
-BiocManager::install("STRINGdb")
-library(STRINGdb)
+Let's do some PPI analysis on [STRING Database](https://string-db.org/).
 
-# Initialize STRINGdb
-string_db <- STRINGdb$new(species = 9606)  # Homo sapiens
-
-# Map gene IDs and retrieve interactions
-genes <- c("BRCA1", "TP53", "EGFR")  # Example genes
-mapped_genes <- string_db$map(genes, "gene")
-interactions <- string_db$get_interactions(mapped_genes$STRING_id)
-
-# Visualize in R or export to Cytoscape
-```
-
-### 3.2 Visualizing PPI Networks with Cytoscape
-1. Download [Cytoscape](https://cytoscape.org/).
-2. Import STRINGdb interaction file.
-3. Use built-in apps (e.g., stringApp) to enhance visualizations.
-
-### 3.3 No-Code Alternative Tools
-- [STRING Database](https://string-db.org/): Explore interactions directly on the web interface.
 
 ---
 
@@ -453,3 +435,4 @@ head(drug_results)
 - Gene Ontology Consortium. (2019). The Gene Ontology Resource: 20 years and still GOing strong. *Nucleic Acids Research*.
 - Eran Eden*, Roy Navon*, Israel Steinfeld, Doron Lipson and Zohar Yakhini. "GOrilla: A Tool For Discovery And Visualization of Enriched GO Terms in Ranked Gene Lists", BMC Bioinformatics 2009, 10:48.
 - Eran Eden, Doron Lipson, Sivan Yogev, Zohar Yakhini. "Discovering Motifs in Ranked Lists of DNA sequences", PLoS Computational Biology, 3(3):e39, 2007.
+- Rosati D, Palmieri M, Brunelli G, Morrione A, Iannelli F, Frullanti E, Giordano A. Differential gene expression analysis pipelines and bioinformatic tools for the identification of specific biomarkers: A review. Comput Struct Biotechnol J. 2024 Mar 1;23:1154-1168. doi: 10.1016/j.csbj.2024.02.018. PMID: 38510977; PMCID: PMC10951429.
