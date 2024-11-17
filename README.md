@@ -12,42 +12,41 @@ You’ll learn how to:
 
 ---
 
-## <span style="color: aqua">1. Introduction to Downstream Analysis</span>
+## <span style="color: magenta">1. Introduction to Downstream Analysis</span>
 Differential gene expression (DGE) analysis is an essential step in RNAseq downstream analysis. The goal is to identify differentially expressed genes (DEGs) between two conditions.
 For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R) we studied the difference in gene expression between airway smooth muscle cells of healthy individuals and airway smooth muscle cells in individuals treated with dexamethasone, a strong synthetic glucocorticoid..
 
 But our DGE analysis returned a long list of differentially expressed genes.
 
 Now, you may have many questions like:
-- How do we even start interpreting this?
-- Is there a way to summarise this long list of genes and interpret hundreds of DGEs at once?
+- :pinched_fingers: How do we even start interpreting this?
+- :pinched_fingers: Is there a way to summarise this long list of genes and interpret hundreds of DGEs at once?
 
-No worries! The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize
-the long gene list to a shorter and more easily interpretable list of pathways.
 
->  ⚠️ Important
-> 
-> **Pathway enrichment analysis summarises the long gene list to a shorter and more easily interpretable list of pathways.**
+
+>  :mechanical_arm:
+>
+> No worries! The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize the long gene list to a shorter and more easily interpretable list of pathways.
 >
 > So instead of having a list of more than 2.000 genes, you may get a list of 50 biological pathways. And then, you can check which genes are behind these pathways.
 
 
 
-BUT  How does pathway enrichment analysis work?
+:pinched_fingers: **How does pathway enrichment analysis work?**
 
 Pathway enrichment analysis needs 3 ingredients.
 
-First, of course, your gene list of interest for example, a list of differentially expressed genes which you want to summarise.
+1. Your **gene list** of interest for example, a list of differentially expressed genes which you want to summarise.
+2. A **list of background genes** – for example, all of the genes in the human genome.
+3. **Lists of gene sets**: gene sets are basically groups of related genes. Of course, for the algorithm to know if your list has a lot of genes related to a disease of interest, you need to tell it which genes are actually involved in that disease of interest.
 
-Second, a list of background genes – for example, all of the genes in the human genome.
-
-Finally, it will take a lists of gene sets. Gene sets are basically groups of related genes. Of course, for the algorithm to know if your list has a lot of genes related to breast cancer, or apoptosis, or cellular respiration, you need to tell it which genes are actually involved in breast cancer, apoptosis, and cellular respiration.
-
-You will find out a bit more about each component later on.
+You will learn more about each component as we go along.
 
 ** PUT image of list od overrepresented pathways (https://biostatsquid.com/pathway-enrichment-analysis-explained/)**
 
-PEA essentially compares your gene list to the background list to check if there are certain pathways overrepresented.
+> :brain: TO REMEMBER
+>
+>**PEA essentially compares your gene list to the background list to check if there are certain pathways overrepresented.**
 
 **In other words, is our list of differentially expressed genes enriched with genes involved in IL-6 synthesis pathway?**
 
