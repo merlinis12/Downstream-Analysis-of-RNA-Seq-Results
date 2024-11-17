@@ -25,7 +25,8 @@ Now, you may have many questions like:
 No worries! The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize
 the long gene list to a shorter and more easily interpretable list of pathways.
 
->  [!IMPORTANT]
+>  ⚠️ Important
+> 
 > **Pathway enrichment analysis summarises the long gene list to a shorter and more easily interpretable list of pathways.**
 >
 > So instead of having a list of more than 2.000 genes, you may get a list of 50 biological pathways. And then, you can check which genes are behind these pathways.
