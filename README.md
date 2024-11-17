@@ -19,14 +19,16 @@ For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Da
 But our DGE analysis returned a long list of differentially expressed genes.
 
 Now, you may have many questions like:
-- :pinched_fingers: How do we even start interpreting this?
-- :pinched_fingers: Is there a way to summarise this long list of genes and interpret hundreds of DGEs at once?
 
+:pinched_fingers: How do we even start interpreting this?
 
+:pinched_fingers: Is there a way to summarise this long list of genes and interpret hundreds of DGEs at once?
 
->  :mechanical_arm:
+🪀
+
+>  :mechanical_arm:  No worries! 
 >
-> No worries! The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize the long gene list to a shorter and more easily interpretable list of pathways.
+> The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize the long gene list to a shorter and more easily interpretable list of pathways.
 >
 > So instead of having a list of more than 2.000 genes, you may get a list of 50 biological pathways. And then, you can check which genes are behind these pathways.
 
