@@ -1,7 +1,7 @@
 
-# <span style="color: LightSkyBlue;">Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation</span>
+# <span style="color: LightSkyBlue">Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation</span>
 
-## <span style="color: greenyellow;">Workshop Overview</span>
+## <span style="color: greenyellow">Workshop Overview</span>
 After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
 This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
 You’ll learn how to:
@@ -12,7 +12,7 @@ You’ll learn how to:
 
 ---
 
-## <span style="color: greenyellow;">1. Introduction to Downstream Analysis</span>
+## <span style="color: aqua">1. Introduction to Downstream Analysis</span>
 Differential gene expression (DGE) analysis is an essential step in RNAseq downstream analysis. The goal is to identify differentially expressed genes (DEGs) between two conditions.
 For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R) we studied the difference in gene expression between airway smooth muscle cells of healthy individuals and airway smooth muscle cells in individuals treated with dexamethasone, a strong synthetic glucocorticoid..
 
@@ -168,7 +168,7 @@ But they do it smartly, because they are not only looking for significant change
 One of the most popular approaches is Gene set enrichment analysis, or GSEA.
 ---
 
-## 2. Gene Set Enrichment Analysis (GSEA)
+## <span style="color: aqua;">2. Gene Set Enrichment Analysis (GSEA)</span>
 
 > [!IMPORTANT]
 > The steps to perform Gene Set Enrichment Analysis are very similar to overrepresentation analysis methods. The big difference is that the input is not a list of genes, but a ranked list genes.
@@ -277,7 +277,7 @@ GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enric
 
 ---
 
-## 3. Protein-Protein Interaction (PPI) Networks
+## <span style="color: aqua;">3. Protein-Protein Interaction (PPI) Networks</span>
 
 Protein-Protein Interaction (PPI) networks represent the interactions between proteins, providing insights into biological processes and pathways. By integrating your list of differentially expressed genes (DEGs) into a PPI network, you can identify functional relationships and discover novel biological insights.
 
@@ -296,7 +296,7 @@ Let's do some PPI analysis on [STRING Database](https://string-db.org/).
 
 ---
 
-## 4. Drug Repurposing
+## <span style="color: aqua">4. Drug Repurposing<span>
 ### 4.1 Introduction
 Drug repurposing identifies existing drugs that could target pathways or genes of interest. RNA-seq data helps uncover potential targets by linking DEGs to known drug-gene interactions.
 
@@ -412,7 +412,7 @@ head(drug_results)
 - Report findings with biological context, emphasizing their relevance to disease mechanisms or therapeutic opportunities.
 
 ---
-## 6. VALIDATION, VALIDATION, VALIDATION
+## <span style="color: aqua">6. VALIDATION, VALIDATION, VALIDATION</span>
 
 ---
 
