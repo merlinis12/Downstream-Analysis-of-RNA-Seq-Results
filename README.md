@@ -19,4 +19,4 @@ Check out [Wiki](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Re
 Check out the [Data Science Institute website](https://datascience.arizona.edu/calendar) from University of Arizona for more events.
 
 ## R demo
-Check the [R demo]()
+Check the [R demo](https://merlinis12.github.io/Downstream-Analysis-of-RNA-Seq-Results/R_demo.html)
