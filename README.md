@@ -1,4 +1,4 @@
-# <span style="color: LightSkyBlue">Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation</span>
+# Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation
 
 **Date:** November 19th  
 **Instructor:** [Simona Merlini](https://merlinis12.github.io/merlinisimona.github.io/)  
