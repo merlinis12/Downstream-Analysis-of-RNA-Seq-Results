@@ -127,7 +127,7 @@ Gene expression analysis results often look like this:
 
 Not all changes are significant, and some might not be differentially expressed at all. 
 
-There are some methods, called **Over-Representation Analyss (ORA) methods** that allow to first filter your results, by significance and fold change, to keep only differentially expressed genes.
+There are some methods, called **Over-Representation Analysis (ORA) methods** that allow to first filter your results, by significance and fold change, to keep only differentially expressed genes.
 
 
 The significance of each pathway is measured by calculating the probability that the observed number of DE genes in a given pathway occurred by chance. Lower p-values indicate overrepresentation.
@@ -189,7 +189,7 @@ The results of GSEA are similar to overrepresentation analysis, but with the add
 > There is a newer generation of pathway enrichment methods called **Topology-based (TB) methods**, which take into account gene dependencies and interactions (more [here](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3146-1)).
 
 
-### 2.2 GSEA in R with `fgsea`
+### 5.1 GSEA in R with `fgsea`
 
 The `fgsea` package in R provides a fast and efficient method for performing preranked Gene Set Enrichment Analysis (GSEA). It enables precise and rapid calculation of extremely low GSEA p-values across a collection of gene sets. The p-value estimation employs an adaptive multi-level split Monte Carlo approach. For a detailed explanation of the algorithm, refer to [this preprint](https://www.biorxiv.org/content/10.1101/060012v3).
 
@@ -239,7 +239,8 @@ ggplot(fgsea_results, aes(reorder(pathway, NES), NES)) +
 > - *NES (Normalized Enrichment Score)*: Higher scores indicate more significant enrichment.
 > - *p-value*: Determines the statistical significance of the enrichment.
 > - *FDR (False Discovery Rate)*: A corrected p-value to account for multiple testing.
-### 2.3 No-Code Alternative: GOrilla
+> - 
+### 5.2 No-Code Alternative: GOrilla
 GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enrichment analysis through a web interface.
 1. Access [GOrilla](http://cbl-gorilla.cs.technion.ac.il/).
 2. Upload a ranked gene list.
@@ -248,26 +249,31 @@ GOrilla (Gene Ontology enRIchment anaLysis and visuaLizAtion tool) enables enric
 
 ---
 
-## <span style="color: aqua;">3. Protein-Protein Interaction (PPI) Networks</span>
+## <span style="color: aqua;">6. Protein-Protein Interaction (PPI) Networks</span>
 
-Protein-Protein Interaction (PPI) networks represent the interactions between proteins, providing insights into biological processes and pathways. By integrating your list of differentially expressed genes (DEGs) into a PPI network, you can identify functional relationships and discover novel biological insights.
+## <span style="color: aqua;">6. Protein-Protein Interaction (PPI) Networks</span>
 
-**STRING (Search Tool for the Retrieval of Interacting Genes/Proteins)**
+Protein-Protein Interaction (PPI) networks are powerful tools for understanding how proteins work together within cells. By integrating **differentially expressed genes (DEGs)** into these networks, we can uncover functional relationships and gain deeper insights into biological processes and pathways.
 
-The STRING database contains all known and predicted protein-protein interactions, including both functional (proteins involved in the same biological processes or pathways) and physical interactions, annotated for different species. It also provides clustering and pathway enrichment analysis based on protein-protein interaction data and allow data visualization [107], [121]. It collects and scores evidence from a variety of sources, including automated text mining of scientific literature, databases of interaction experiments and annotated complexes/pathways, computational predictions of interactions based on co-expression and genomic context, and systematic transfers of evidence of interactions from one organism to another 
+:pinched_fingers: **What is STRING?**
 
-#### Steps for Building PPI Networks
+**STRING** (Search Tool for the Retrieval of Interacting Genes/Proteins) is a comprehensive database that provides information about both **functional** and **physical protein-protein interactions** across different species. It combines various types of evidence, including:
 
-1. **Identify the DEGs**: Start with a list of genes with significant differential expression.
-2. **Obtain interaction data**: Use databases like STRING, BioGRID, or Pathway Commons to get protein interaction information.
-3. **Construct the network**: Use R or external software to build and visualize the network.
+- **Experimental data**: Direct interactions observed in laboratory experiments.
+- **Computational predictions**: Based on genomic context and co-expression.
+- **Text mining**: Analyzing scientific literature to predict interactions.
+- **Pathway annotations**: Interactions tied to specific biological pathways.
 
-Let's do some PPI analysis on [STRING Database](https://string-db.org/).
+STRING also allows you to perform **clustering** and **pathway enrichment analysis**, and it visualizes your protein interaction data to help identify key biological processes.
+
+
+Ready to get started? Let’s dive into some hands-on PPI analysis using the [STRING Database](https://string-db.org/).
+
 
 
 ---
 
-## <span style="color: aqua">4. Drug Repurposing<span>
+## <span style="color: aqua">7. Drug Repurposing<span>
 ### 4.1 Introduction
 Drug repurposing identifies existing drugs that could target pathways or genes of interest. RNA-seq data helps uncover potential targets by linking DEGs to known drug-gene interactions.
 
