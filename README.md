@@ -1,212 +1,157 @@
-
 # <span style="color: LightSkyBlue">Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation</span>
 
 ## <span style="color: greenyellow">Workshop Overview</span>
-After identifying differentially expressed genes as we did in the [previous workshop]((https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki)), it’s critical to interpret these findings in a biological context. 
-This workshop explores downstream analyses you can perform with differential gene expression analysis results in R.
-You’ll learn how to:
-- Conduct [Gene Set Enrichment Analysis (GSEA)](#2-gene-set-enrichment-analysis-gsea) for pathway-level insights.
-- Build [Protein-Protein Interaction (PPI) networks](#3-protein-protein-interaction-ppi-networks) to identify functional connections between genes.
-- Explore drug repurposing opportunities based on RNA-seq data.
 
+After identifying differentially expressed genes (DEGs) as we did in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki), it’s critical to interpret these findings in a biological context. In this workshop, we will explore downstream analyses you can perform using RNA-seq data.
+
+### Key Learning Goals:
+- Conduct [Gene Set Enrichment Analysis (GSEA)](#2-gene-set-enrichment-analysis-gsea) for pathway-level insights.
+- Build [Protein-Protein Interaction (PPI) Networks](#3-protein-protein-interaction-ppi-networks) to explore functional connections between genes.
+- Explore drug repurposing opportunities based on RNA-seq data.
 
 ---
 
-## <span style="color: magenta">1. Introduction to Downstream Analysis</span>
-Differential gene expression (DGE) analysis is an essential step in RNAseq downstream analysis. The goal is to identify differentially expressed genes (DEGs) between two conditions.
-For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R) we studied the difference in gene expression between airway smooth muscle cells of healthy individuals and airway smooth muscle cells in individuals treated with dexamethasone, a strong synthetic glucocorticoid..
+## <span style="color: LightSkyBlue">1. Introduction to Downstream Analysis</span>
 
-But our DGE analysis returned a long list of differentially expressed genes.
+Differential gene expression (DGE) analysis is an essential step in RNA-seq data analysis. The goal is to identify DEGs between two conditions. For example, in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R), we studied the difference in gene expression between airway smooth muscle cells from healthy individuals and those treated with dexamethasone.
 
-Now, you may have many questions like:
+### The Challenge:
+After performing DGE, you might be left with a long list of DEGs.
 
-:pinched_fingers: How do we even start interpreting this?
+:pinched_fingers: How do we start interpreting these results?
 
-:pinched_fingers: Is there a way to summarise this long list of genes and interpret hundreds of DGEs at once?
+:pinched_fingers: Is there a way to simplify and interpret hundreds of DEGs at once?
 
-🪀
-
->  :mechanical_arm:  No worries! 
+> :mechanical_arm: **Solution:**  
 >
-> The good new is that there is a common approach called **pathway enrichment analysis (PEA)** that allows you to summarize the long gene list to a shorter and more easily interpretable list of pathways.
->
-> So instead of having a list of more than 2.000 genes, you may get a list of 50 biological pathways. And then, you can check which genes are behind these pathways.
+> One common approach is **Pathway Enrichment Analysis (PEA)**, which summarizes large gene lists into a more easily interpretable list of biological pathways. Instead of reviewing thousands of genes, you’ll end up with a shorter list of relevant pathways.
 
+---
 
-
-:pinched_fingers: **How does pathway enrichment analysis work?**
-
-Pathway enrichment analysis needs 3 ingredients.
-
-1. Your **gene list** of interest for example, a list of differentially expressed genes which you want to summarise.
-2. A **list of background genes** – for example, all of the genes in the human genome.
-3. **Lists of gene sets**: gene sets are basically groups of related genes. Of course, for the algorithm to know if your list has a lot of genes related to a disease of interest, you need to tell it which genes are actually involved in that disease of interest.
-
-You will learn more about each component as we go along.
-
-** PUT image of list od overrepresented pathways (https://biostatsquid.com/pathway-enrichment-analysis-explained/)**
+## <span style="color: LightSkyBlue">2. Pathway Enrichment Analysis (PEA)</span>
 
 > :brain: TO REMEMBER
 >
->**PEA essentially compares your gene list to the background list to check if there are certain pathways overrepresented.**
+> **Pathway enrichment analysis** compares your gene list to a background list to check if certain pathways are overrepresented.
 
-**In other words, is our list of differentially expressed genes enriched with genes involved in IL-6 synthesis pathway?**
+### PEA Workflow:
+1. **Gene List**: This could be your differentially expressed genes which you want to summarize.
+2. **Background Gene List**: For example, all genes in the human genome.
+3. **Gene Sets**: Groups of related genes associated with specific pathways or diseases.
 
-To answer this question, we can build a contingency table. This will help us determine whether the fraction of genes of interest in the pathway is higher compared to the fraction of genes outside the pathway (so,  background set).
+You will learn more about each component as we go along.
 
-You can have a look at the table below.
+**INSERT THE PICTURE!!!!!!!!!!!!!!!!!!!!!!!!**
 
-We have a column for differentially expressed and a column not differentially expressed genes, and then two rows, for genes that are annotated as being involved in IL-6 production and genes that are not involved in IL6 production.
+PEA helps answer questions like:
+> **Is our list of differentially expressed genes enriched with genes involved in the IL-6 synthesis pathway?**
 
-To simplify things a lot, we will just look at 30 genes. 15 differentially expressed genes were identified and of those, 12 genes were associated with the GO term interleukin-6 production.
+To test this, we use a contingency table comparing the fraction of genes in the pathway vs. those outside of it (background).
 
-We find that 12 out of our 15 differentially expressed genes are involved in interleukin-6 production. We could quite confidently say that our gene list is enriched with genes involved in IL-6 production.
+Here’s an example using 30 genes:
+- 15 DEGs
+- 12 out of those 15 DEGs are involved in IL-6 production. We could quite confidently say that our gene list is enriched with genes involved in IL-6 production.
 
-Obviously, we need an objective statistical test to determine what is enriched and what is not.
+We can statistically test this using Fisher’s Exact Test to check if the IL-6 production pathway is overrepresented.
 
-There are many methods out there, but the one that is commonly used in pathway enrichment analysis is Fisher’s exact test.
-Like with most statistical tests, you will obtain a p-value.
+>  [!IMPORTANT]  
+> A low p-value indicates enrichment, but **check the specific genes** involved—are they positive or negative regulators?
 
-If you p-value is really low, you can safely say that your list is overrepresented with genes involved in IL-6 production, in other words, IL-6 production is an important pathway in alcoholic liver disease compared to healthy liver cells.
+#### Pathway Enrichment in Action:
+> [!CAUTION]  
+> A low p-value **doesn’t mean** the pathway is upregulated. You need to check if the genes are promoting or inhibiting the pathway.
 
-> [!IMPORTANT]
-> Careful! A low p-value does not mean that pathway is upregulated! You would have to check the genes that are actually overrepresented in your list, and see if they are positive or negative regulators of that pathway.
+---
+
+### Multiple Testing Correction
+
+PEA involves testing multiple pathways, which introduces a risk of finding significant results by chance. This is addressed by using a **multiple testing correction** method, such as **Benjamini-Hochberg (BH)**.
+
+> [!NOTE]  
+> **Summary**:  
+> PEA compares your long gene list to a background set and determines if certain pathways are overrepresented. It involves checking the fraction of genes annotated to a specific gene set (like Gene Ontology (GO) terms) and comparing it to the genome-wide distribution.
 
 
-> [!NOTE]
-> So this is what pathway enrichment is all about.
+
+---
+
+## <span style="color: LightSkyBlue">3. Gene Sets and Databases</span>
+
+### Common Gene Sets Databases:
+- **Gene Ontology** [(GO)](https://geneontology.org/): Focuses on biological processes, molecular functions, and cellular components (many species including humans).
+- Kyoto Encyclopedia of Genes and Genomes [KEGG](https://www.genome.jp/kegg/): Primarily concerned with metabolic pathways (many species including humans).
+- [**Reactome**](https://reactome.org/): A curated database of human molecular pathways (only humans).
+  
+
+| **Aspect**                | **Gene Ontology (GO)**                               | **KEGG**                                         | **Reactome**                                        |
+|---------------------------|-----------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|
+| **Focus Area**             | Biological processes, molecular functions, cellular components | Metabolic pathways and molecular networks       | Curated human molecular pathways                   |
+| **Scope**                  | Universal; applies to all organisms                 | Primarily focused on metabolic pathways         | Focuses on human biological pathways                |
+| **Categories**             | Biological Processes (BP), Molecular Functions (MF), Cellular Components (CC) | Metabolic, signaling pathways, disease pathways | Molecular interactions, cellular processes, pathways|
+| **Usage**                  | Broadly used for gene functional annotations       | Primarily used for pathway mapping in metabolism | Used for pathway visualization and analysis         |
+| **Data Type**              | Terms representing biological concepts              | Pathways, networks, and diseases                | Pathways and interactions                           |
+| **Example Terms**          | "Apoptosis", "Cell cycle", "DNA binding"            | "Glycolysis", "Cytokine signaling", "Cancer"    | "Signal transduction", "Gene expression regulation" |
+| **Application**            | Gene annotation and enrichment analysis             | Metabolic profiling and drug development        | Disease research, drug discovery, and systems biology|
+| **Method of Representation** | Hierarchical terms with relationships             | Pathways mapped with enzymes, metabolites, and genes | Curated pathway maps with gene interactions         |
+| **Available Tools**        | GO-Term Finder, GOseq, clusterProfiler              | KEGG Mapper, Pathview                           | Reactome Pathway Browser, Pathway Analysis          |
+| **Human-Specific**         | No, applicable to all organisms                     | No, but it includes many human pathways         | Yes, Reactome is focused solely on human data       |
+| **URL**                    | [Gene Ontology](https://www.geneontology.org/)       | [KEGG](https://www.kegg.jp/)                     | [Reactome](https://reactome.org/)                   |
+
+
+#### Gene Ontology (GO)
+Gene Ontology is a controlled vocabulary for describing gene functions. It consists of three ontologies:
+1. **Biological Processes (BP)**: Describes large biological pathways or events (e.g., "cell cycle").
+2. **Molecular Functions (MF)**: Describes molecular activities (e.g., "protein kinase activity").
+3. **Cellular Components (CC)**: Describes the location within the cell (e.g., "plasma membrane").
+
+> [!NOTE]  
+> **GO Terms Hierarchy**: GO terms are organized hierarchically, where broader terms are parents to more specific ones.
+
+### Selecting Background Genes
+Choosing the right background gene set is crucial for accurate pathway enrichment analysis. There are gene sets for diseases, tissues, transcription factors, and more.
+
+> [!WARNING]  
+> Carefully select your background genes based on your experimental setup to ensure accurate results.
+
+---
+
+
+
+## <span style="color: LightSkyBlue"> 4. Gene List</span>
+
+Gene expression analysis results often look like this:
+
+- Some genes are **downregulated**.
+- Some are **upregulated**.
+- Some **don’t change** at all.
+
+Not all changes are significant, and some might not be differentially expressed at all. 
+
+There are some methods, called **Over-Representation Analyss (ORA) methods** that allow to first filter your results, by significance and fold change, to keep only differentially expressed genes.
+
+
+The significance of each pathway is measured by calculating the probability that the observed number of DE genes in a given pathway occurred by chance. Lower p-values indicate overrepresentation.
+
+> [!CAUTION]  
+> **Overrepresentation analysis methods** heavily depend on the cutoffs used to select DE genes.
+
+
+
+:pinched_fingers: **Is there a more objective or unbiased way to handle this?**
+
+> :mechanical_arm: **Solution:**  
 >
-> You summarise a long list of genes to a shorter list of pathways, with their p-values.
-
-Obviously, it does it not with one, but you with thousands of pathways.
-
-And this bring us to a BIG problem.
-
-The big problem is called multiple testing.
-
-Basically, because we are repeatedly testing a lot of pathways, some pathways will get apparently significant p-values just by chance.
-
-So we might get results that are a bit unexpected… or that just don’t make any sense.
-
-Thank goodness there is a solution for this.
-
-We just need a multiple-testing correction method. The most commonly used method is the Benjamini-Hochberg (BH) correction.
-
-SO IN SUMMARY
->[!NOTE]
->Pathway enrichment analysis takes your gene list of interest and compares it to a list of background genes to check if there are certain pathways that are overrepresented.
->
->So it checks the fraction of your genes annotated to a specific Gene Ontology (GO) term. Then it checks the proportion of genes in the whole genome (your background set) that are annotated to that GO Term.
->
->Then, it gives you a p-value which tells you what is the probability that that pathway is actually overrepresented in your gene list and it wasn’t just coincidence.
----
-**Gene sets** = groups of related genes
-
-There are many databases of gene sets out there.
-
-Some of the most widely used are Gene Ontology GO, KEGG or Reactome.
-
-- GO basically focuses on biological processes
-- KEGG is more focused on metabolic pathways
-- Reactome is a curated database of human molecular pathways.
-
-**Gene Ontology GO**
- [Gene ontology](https://www.geneontology.org/) provides a controlled vocabulary for describing:
- 1. Biological Processes (BP ontology): Describes the larger biological pathways or events that a gene product is involved in, such as "cell cycle" or "apoptosis".
- 2. Molecular Functions (MF ontology): Represents the specific molecular activity of a gene product, like "protein kinase activity" or "DNA binding".
- 3. Cellular Components (CC ontology): Indicates where within a cell the gene product is located, such as "plasma membrane" or "nucleus". 
-
-> [!NOTE]
-> Hierarchical structure:
-> GO terms are organized in a hierarchical structure where more general terms are parents to more specific child terms. 
+> **Gene Set Enrichment Analysis (GSEA)**, a great method for pathway enrichment that takes both significance and fold change into account.
 
 
-> [!NOTE]
-> ** It is essential to choose well your background genes to your experiment. **
-> There are gene sets for diseases, which gives you groups of genes associated to different diseases, tissues, which gives you groups of genes expressed in specific tissues, transcription factor targets, which tells you which genes are the target of different transcription factors
+
 
 
 ---
 
-**Gene List**
-Results from gene expression analysis often look like this. Some genes are downregulated, some are upregulated, some don’t change. Some changes are significant, and some are not significant at all.
-If you just use this list for pathway enrichment analysis, it will not take into account all that information. It will also match genes that are not even differentially expressed.
-
-So you need to first filter your results, by significance and fold change, to keep only differentially expressed genes. The genes of interest.
-
-> [!WARNING]
-> Of course, the results can change a lot depending on the cut-offs you set to say what is a DEG and what is not.
-
-
-Is there a more objective or unbiased way of doing this?
-
-For example, by taking into account the significance and strength of the changes, which is information we have anyway?
-
-Of course there is!
-
-The method is called Gene Set Enrichment Analysis and it a great pathway enrichment analysis method which helps us solve this problem. Find more about it in this other post.
-
---
-OPPURE
-
-Pathway enrichment analysis methods take a list of differentially expressed (DE) genes as input, and identify the sets in which the DE genes are over-represented or under-represented.
-
-So they basically summarise long lists of genes into a shorter list of pathways.
-
-The significance of each pathway is measured by calculating the probability that the observed number of DE genes in a given pathway are simply observed by chance. Lower p-values means that the pathway is actually overrepresented and it was not just by chance.
-
-These approaches are known as Over-Representation Analysis (ORA). + picture
-
-The problem in overrepresentation analysis methods is that we first need to select differentially expressed genes.
-
-> [!CAUTION]
-> Overrepresentation Analysis Methods depend a lot in the criteria used to select differentially-expressed genes.
-
-
-How did they eliminate this dependency on gene selection criteria? Basically, by taking all genes into consideration.
-
-But they do it smartly, because they are not only looking for significant changes in sets of functionally related genes, but also genes with large expression changes.
-
-One of the most popular approaches is Gene set enrichment analysis, or GSEA.
----
-
-## <span style="color: aqua;">2. Gene Set Enrichment Analysis (GSEA)</span>
-
-> [!IMPORTANT]
-> The steps to perform Gene Set Enrichment Analysis are very similar to overrepresentation analysis methods. The big difference is that the input is not a list of genes, but a ranked list genes.
-
-This basically means that genes are ranked by some score.
-
-A common way of ranking genes is by level of differential expression. The p-values tell us how significant the change is. The log2fold changes tell us the direction and strength of the change, basically if they are upregulated or downregulated.
-
-We can combine both to get a ranked list of genes. This will order the genes both by significance and the direction of change.
-
-> Ranking = Sing(log2FoldChange)*-log10(p-value)
-
-
-The result is basically the same as with overrepresentation analysis.
-
-We will obtain a p-value, which we need to correct for multiple testing since we are repeatedly testing thousands of gene ontology terms.
-
-This way, we were able to reduce our long list of genes into a more manageable list of biological pathways.
-
-> [!NOTE]
-> Another note on rankings… You can just use the log2(fold-change) as a ranking – but it will not take into account genes with a large fold change but non-significant. However, if you have already selected your significant genes, this may be a good option for you.
-
-> So as you can see, gene set enrichment analysis has the advantage that you don’t filter out genes prior to the analysis, and also it takes into account how significant the changes are, and in which direction.
-
-> [!TIP]
-> Gene set enrichment analysis takes your ranked gene list of interest and compares it to a list of background genes. By statistically testing the distribution in your list, it determines which pathways are overrepresented.
-
-
-> [!NOTE]
-> there is a new generation of pathway enrichment analysis Topology-based (TB) methods which also take into account dependencies and interactions between genes.
----
+## <span style="color: aqua;">5. Gene Set Enrichment Analysis (GSEA)</span>
 
 Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a predefined set of genes shows statistically significant differences in expression between two biological conditions. GSEA does not rely on a threshold (like fold-change) and instead assesses whether the genes in a set are overrepresented at the extremes of a ranked list of genes.
-
-
-
 
 **Steps in GSEA**
 
@@ -216,30 +161,52 @@ Gene Set Enrichment Analysis (GSEA) is a method used to determine whether a pred
 - **Assess statistical significance** using permutation testing.
 
 
-### 2.1 Overview
-GSEA helps identify pathways and biological processes enriched in a ranked list of genes. We’ll analyze pathways using:
-- **Gene Ontology (GO)**: Biological processes, molecular functions, and cellular components.
-- **KEGG**: Metabolic and signaling pathways.
-- **Reactome**: High-level pathway annotations.
+> [!IMPORTANT]  
+> The steps to perform **Gene Set Enrichment Analysis** are very similar to those of overrepresentation analysis methods. The key difference is that GSEA takes a **ranked list of genes** as input rather than a filtered list.
+
+:pinched_fingers: **How does it work?**
+
+Genes are ranked by some score that combines **differential expression** and **direction of change**. A common ranking method is:
+
+$$**Ranking = Sign(log2FoldChange) * -log10(p-value)**$$
+
+This gives us a ranked list that orders genes by significance and the direction of change (upregulated or downregulated).
+
+The results of GSEA are similar to overrepresentation analysis, but with the added benefit that **genes are not filtered** beforehand, and it considers the magnitude and significance of the changes.
+
+> [!NOTE]  
+> You can just use the $log2(fold-change)$ as a ranking – but it will not take into account genes with a large fold change but non-significant. However, if you have already selected your significant genes, this may be a good option for you.
+### Key Benefits of GSEA:
+
+- GSEA allows you to **rank genes by significance and fold change**.
+- It does not require filtering genes beforehand.
+- **GSEA compares the ranked list** with a list of background genes and determines which pathways are overrepresented based on the ranked list.
+
+
+> [!NOTE]  
+> There is a newer generation of pathway enrichment methods called **Topology-based (TB) methods**, which take into account gene dependencies and interactions (more [here](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-019-3146-1)).
+
 
 ### 2.2 GSEA in R with `fgsea`
-`fgsea` package in R provides a fast and efficient method for performing preranked GSEA. It enables precise and rapid calculation of extremely low GSEA p-values across a collection of gene sets. The p-value estimation employs an adaptive multi-level split Monte Carlo approach. For a detailed explanation of the algorithm, refer to [this preprint](https://www.biorxiv.org/content/10.1101/060012v3).
 
-Essentially, there are two things you need to perform preranked gene set enrichment analysis with fgsea.
+The `fgsea` package in R provides a fast and efficient method for performing preranked Gene Set Enrichment Analysis (GSEA). It enables precise and rapid calculation of extremely low GSEA p-values across a collection of gene sets. The p-value estimation employs an adaptive multi-level split Monte Carlo approach. For a detailed explanation of the algorithm, refer to [this preprint](https://www.biorxiv.org/content/10.1101/060012v3).
 
-The fgsea package takes in two main arguments.
+Essentially, there are two things you need to perform preranked gene set enrichment analysis with `fgsea`.
 
-The first one is pathways: a list of gene sets or pathways to check
+The `fgsea` package takes in two main arguments:
 
-The second one is stats: a named vector of our genes of interest we want to perform GSEA on. The gene names must be the same as the ones in pathways! So make sure you are using the same nomenclature (i.e., gene IDs or Ensemble IDs).
+1. **pathways**: A list of gene sets or pathways to check.
+2. **stats**: A named vector of your genes of interest for GSEA. The gene names must match the ones in the pathways list. Make sure you are using the same nomenclature (e.g., gene IDs or Ensembl IDs).
 
 That’s it!
 
-There are additional parameters you may be interested in such as:
+There are additional parameters you may be interested in, such as:
 
-minSize: minimal size of a gene set to test (all pathways below the threshold are excluded)
-maxSize: the same, but a maximum threshold.
-scoreType: the default is ‘std’, where the enrichment score is computed normally, but you can also use one-tailed tests if you are only interested in positive (‘pos’) enrichment – so only pathways that are overrepresented – or negative (‘neg’) enrichment – to only get pathways that are underrepresented in your list of genes.
+- **minSize**: The minimal size of a gene set to test. Pathways below this threshold are excluded.
+- **maxSize**: The maximum size of a gene set to test. Pathways above this threshold are excluded.
+- **scoreType**: The default is ‘std’, where the enrichment score is computed normally. However, you can also use one-tailed tests if you are only interested in positive (‘pos’) enrichment – so only pathways that are overrepresented – or negative (‘neg’) enrichment – to only get pathways that are underrepresented in your list of genes.
+
+
 
 ```R
 # Install and load necessary packages
