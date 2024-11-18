@@ -15,9 +15,5 @@ Building on the foundation of identifying differentially expressed genes (DEGs) 
 - Explore [drug repurposing](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Results/wiki#7-drug-repurposing) opportunities based on RNA-seq data.
 
 ## Workshop material
-Check out [Wiki](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Results/wiki) for worshop materials.
-
-Check out the [Data Science Institute website](https://datascience.arizona.edu/calendar) from University of Arizona for more events.
-
-## R demo
-Check the [R demo](https://merlinis12.github.io/Downstream-Analysis-of-RNA-Seq-Results/R_demo.html)
+- Check out [Wiki](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Results/wiki) for worshop materials.
+- [R demo](https://merlinis12.github.io/Downstream-Analysis-of-RNA-Seq-Results/R_demo.html)
