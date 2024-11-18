@@ -176,7 +176,9 @@ The results of GSEA are similar to overrepresentation analysis, but with the add
 
 > [!NOTE]  
 > You can just use the $log2(fold-change)$ as a ranking – but it will not take into account genes with a large fold change but non-significant. However, if you have already selected your significant genes, this may be a good option for you.
-### Key Benefits of GSEA:
+
+
+**Key Benefits of GSEA:**
 
 - GSEA allows you to **rank genes by significance and fold change**.
 - It does not require filtering genes beforehand.
