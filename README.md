@@ -6,7 +6,8 @@
 **Requirements:** R, RStudio ([download link](https://rstudio-education.github.io/hopr/starting.html)) 
 ## <span style="color: greenyellow">Workshop Overview</span>
 
-After identifying differentially expressed genes (DEGs) as we did in the [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki), it’s critical to interpret these findings in a biological context. In this workshop, we will explore downstream analyses you can perform using RNA-seq data.
+
+Building on the foundation of identifying differentially expressed genes (DEGs) from our [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki), it's time to unlock the biological meaning behind those findings. In this session, we'll dive into powerful downstream analyses to uncover the rich insights hidden in your RNA-seq data.
 
 ## Key Learning Goals:
 - Conduct [Gene Set Enrichment Analysis (GSEA)](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Results/wiki#5-gene-set-enrichment-analysis-gsea) for pathway-level insights.
