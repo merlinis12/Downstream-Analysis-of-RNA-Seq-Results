@@ -4,8 +4,8 @@
 **Instructor:** [Simona Merlini](https://merlinis12.github.io/merlinisimona.github.io/)  
 **Level:** Basic/Intermediate  
 **Requirements:** R, RStudio ([download link](https://rstudio-education.github.io/hopr/starting.html)) 
-## <span style="color: greenyellow">Workshop Overview</span>
 
+## Workshop Overview
 
 Building on the foundation of identifying differentially expressed genes (DEGs) from our [previous workshop](https://github.com/merlinis12/RNA-Seq-Data-Analysis-in-R/wiki), it's time to unlock the biological meaning behind those findings. In this session, we'll dive into powerful downstream analyses to uncover the rich insights hidden in your RNA-seq data.
 
