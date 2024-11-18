@@ -79,7 +79,7 @@ PEA involves testing multiple pathways, which introduces a risk of finding signi
 
 ### Common Gene Sets Databases:
 - **Gene Ontology** [(GO)](https://geneontology.org/): Focuses on biological processes, molecular functions, and cellular components (many species including humans).
-- Kyoto Encyclopedia of Genes and Genomes [KEGG](https://www.genome.jp/kegg/): Primarily concerned with metabolic pathways (many species including humans).
+- Kyoto Encyclopedia of Genes and Genomes ([KEGG](https://www.genome.jp/kegg/)): Primarily concerned with metabolic pathways (many species including humans).
 - [**Reactome**](https://reactome.org/): A curated database of human molecular pathways (only humans).
   
 
