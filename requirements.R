@@ -12,13 +12,17 @@ cran_packages <- c(
   "dplyr", 
   "pander", 
   "ggrepel", 
-  "ggnewscale"
+  "ggnewscale", 
+  "vsn", 
+  "gplots", 
+  "clusterProfiler", 
+  "knitr"
 )
 
 # Install missing CRAN packages
 for (pkg in cran_packages) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
+    install.packages(pkg, dependencies = TRUE)
   }
 }
 
@@ -26,7 +30,12 @@ for (pkg in cran_packages) {
 bioc_packages <- c(
   "fgsea", 
   "msigdbr", 
-  "org.Hs.eg.db"
+  "org.Hs.eg.db", 
+  "apeglm", 
+  "NOISeq", 
+  "DESeq2", 
+  "limma", 
+  "org.Mm.eg.db"
 )
 
 # Install missing Bioconductor packages
