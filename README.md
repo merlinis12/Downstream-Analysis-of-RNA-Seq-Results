@@ -1,8 +1,11 @@
 # Downstream Analysis of RNA-Seq Results in R: GSEA, PPI Networks, and Biological Interpretation
 
 **Date:** February 20th, 2025
+
 **Instructor:** [Simona Merlini](https://merlinis12.github.io/merlinisimona.github.io/), Francesca Vitali
-**Level:** Basic/Intermediate  
+
+**Level:** Basic/Intermediate
+
 **Requirements:** R, RStudio ([download link](https://rstudio-education.github.io/hopr/starting.html)) 
 
 ## Workshop Overview
