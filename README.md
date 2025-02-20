@@ -21,3 +21,4 @@ Building on the foundation of identifying differentially expressed genes (DEGs) 
 - Check out [Wiki](https://github.com/merlinis12/Downstream-Analysis-of-RNA-Seq-Results/wiki) for worshop materials.
 - [R demo February 2025](https://merlinis12.github.io/Downstream-Analysis-of-RNA-Seq-Results/R_exercise_02_20_2025.html)
 - [R demo 2](https://merlinis12.github.io/Downstream-Analysis-of-RNA-Seq-Results/R_demo.html)
+- [ClusterProfiler wiki](https://yulab-smu.top/biomedical-knowledge-mining-book/index.html)
